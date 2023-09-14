@@ -32,3 +32,51 @@ public static void moveDisksTOH(int n, char fromTower,
             System.out.println("Move disk " + n + " from " +  fromTower + " to " + toTower);
             moveDisks(n - 1, auxTower, toTower, fromTower); }}
 
+static String dec2Bin(int value, String binary) {
+        if (value > 0) {
+            return dec2Bin(value / 2, (value % 2) + binary); }
+        return binary; }
+
+public static String dec2Hex(int value) {
+        if (value < 16) {
+            return getAsHexNumber(value) + hexValue; }
+        hexValue = getAsHexNumber(value % 16) + hexValue;
+        return dec2Hex(value / 16); }
+    static String getAsHexNumber(int value) {
+        switch (value) {
+            case 10:  return "A";
+            case 11: return "B";
+            case 12: return "C";
+            case 13: return "D";
+            case 14: return "E";
+            case 15: return "F";
+            default:
+                return String.valueOf(value); } }
+
+  public static int bin2Dec(String binaryString) {
+        if (binaryString.length() == 0) 
+            return decimal;
+        char binaryDigit = binaryString.charAt(binaryString.length() - 1);
+        int binaryValue = Integer.parseInt(binaryDigit + "");
+        decimal += binaryValue * ((int) Math.pow(2, pow));
+        pow += 1;
+        return bin2Dec(binaryString.substring(0, binaryString.length() - 1));}}
+
+ public static long hex2Dec(String hexString) {
+        return hex2Dec(hexString, 0, hexString.length() - 1); }
+    public static long hex2Dec(String hexString, int low, int high) {
+        if (high < low) return 0;
+        else  return hex2Dec(hexString, low, high - 1) * 16+ hexCharToDecimal(hexString.charAt(high));}  
+    public static long hexCharToDecimal(char ch) {
+        if ('A' <= ch && ch <= 'F')  return 10 + ch - 'A';
+        else return ch - '0';}}
+
+   public static void displayPermutation(String s) {
+        displayPermutation(" ", s);}
+public static void displayPermutation(String s1, String s2) {
+        if (s2.length() > 0) {
+            for (int i = 0; i < s2.length(); i++) {
+                String shuffle1 = s1 + s2.charAt(i);
+                String shuffle2 = s2.substring(0, i) + s2.substring(i + 1);
+                displayPermutation(shuffle1, shuffle2); }}
+         else             System.out.println(s1);}
