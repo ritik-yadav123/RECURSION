@@ -1,0 +1,20 @@
+public class Main{
+    public static void main(String [] args){
+        int n=3;
+        int m=3;
+     boolean[][]isVisited=new boolean[n][m];//by default false
+        printmaze(0,0,n-1,m-1,"",isVisited);}
+    private static void printmaze(int sr,int sc,int er,int ec,String s,boolean [][]isVisited){
+        if(sr<0||sc<0)return;
+        if (sr>er||sc>ec) return;
+        if(isVisited[sr][sc]==true) return;
+        if (sr==er&&sc==ec) {
+            System.out.println(s);
+            return;}
+            isVisited[sr][sc]=true;
+       printmaze(sr+1,sc,er,ec,s+"D",isVisited);//2directions
+       printmaze(sr,sc+1,er,ec,s+"R",isVisited);//2 directions
+     printmaze(sr,sc-1,er,ec,s+"L",isVisited);//4directions
+       printmaze(sr-1,sc,er,ec,s+"U",isVisited);//4directions
+    isVisited[sr][sc]=false;   
+}}
